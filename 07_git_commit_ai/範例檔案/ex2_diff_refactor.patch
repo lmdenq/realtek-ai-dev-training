@@ -1,0 +1,52 @@
+diff --git a/05_log_ai_analytics/3_Python/mobile_log_basic_manual.py b/05_log_ai_analytics/3_Python/mobile_log_basic_manual.py
+@@ -9,19 +9,32 @@ def parse_line_naive(line: str):
+-    if not line:
+-        return None
+-
+-    # 先用空白切開前幾欄 (timestamp level source)
+-    parts = line.split()
+-    if len(parts) < 4:
+-        return {"raw": line}
+-
+-    timestamp = f"{parts[0]} {parts[1]}"
+-    level = parts[2]
+-    source = parts[3]
+-    # 後面全部當成 message
+-    message = " ".join(parts[4:])
+-
+-    return {
+-        "timestamp": timestamp,
+-        "level": level,
+-        "source": source,
+-        "message": message,
+-    }
++    if not line:
++        return None
++
++    parts = line.split()
++    if len(parts) < 4:
++        return {"raw": line}
++
++    timestamp = f"{parts[0]} {parts[1]}"
++    level = parts[2]
++    source = parts[3]
++    rest = parts[4:]
++
++    kv = {}
++    message_tokens = []
++    for token in rest:
++        if "=" in token:
++            key, value = token.split("=", 1)
++            kv[key] = value
++        else:
++            message_tokens.append(token)
++
++    message = " ".join(message_tokens)
++
++    return {
++        "timestamp": timestamp,
++        "level": level,
++        "source": source,
++        "fields": kv,
++        "message": message,
++    }

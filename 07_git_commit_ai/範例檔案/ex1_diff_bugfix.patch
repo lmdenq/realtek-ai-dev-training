@@ -1,0 +1,24 @@
+diff --git a/05_log_ai_analytics/3_Python/mobile_log_metrics_manual.py b/05_log_ai_analytics/3_Python/mobile_log_metrics_manual.py
+@@ -38,7 +38,16 @@ def main():
+-            if "AIInference" in line and "latency_ms=" in line:
+-                parts = line.split("latency_ms=")
+-                if len(parts) > 1:
+-                    right = parts[1]
+-                    num_str = ""
+-                    for ch in right:
+-                        if ch.isdigit():
+-                            num_str += ch
+-                        else:
+-                            break
+-                    if num_str:
+-                        asr_latencies.append(int(num_str))
++            if "AIInference" in line and "latency_ms=" in line:
++                try:
++                    parts = line.split("latency_ms=")
++                    right = parts[1].split()[0]
++                    num_str = right.replace(",", "")
++                    latency = int(num_str)
++                    asr_latencies.append(latency)
++                except (IndexError, ValueError):
++                    # ignore malformed latency
++                    continue

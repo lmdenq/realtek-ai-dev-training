@@ -1,0 +1,9 @@
+{
+  "file": "datasets\\example_mobile_ai.log",
+  "generated_at": "2025-11-24T06:38:47.215872Z",
+  "total_lines": 115,
+  "counts": {
+    "UNKNOWN": 115
+  },
+  "error_ratio": 0.0
+}

@@ -1,0 +1,13 @@
+diff --git a/06_scheduled_log_alert/3_Python/scheduled_log_alert_manual.py b/06_scheduled_log_alert/3_Python/scheduled_log_alert_manual.py
+@@ -69,6 +69,19 @@ def check_abnormal(summary: Dict[str, Any], cfg: Dict[str, Any]) -> Dict[str, Any]:
+     if acfg.get("enabled") and summary["asr_p95"] is not None:
+         if summary["asr_p95"] > acfg.get("max_p95_ms", 200):
+             triggered["asr_p95"] = summary["asr_p95"]
++
++    rcfg = alerts_cfg.get("recommend_error_rate", {})
++    if rcfg.get("enabled"):
++        err_rate = summary.get("recommend_error_rate")
++        if err_rate is not None and err_rate > rcfg.get("max_error_rate", 0.05):
++            triggered["recommend_error_rate"] = err_rate
++
+     return triggered

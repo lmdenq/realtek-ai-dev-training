@@ -1,0 +1,45 @@
+{
+  "model_stats": {
+    "asr-small-v1": {
+      "avg_ms": 158.88,
+      "p95_ms": 189
+    },
+    "llm-chat-v2": {
+      "avg_ms": 760.2,
+      "p95_ms": 812
+    },
+    "recommend-v1": {
+      "avg_ms": 135.5,
+      "p95_ms": 129
+    },
+    "vision-objdet-v1": {
+      "avg_ms": 69.67,
+      "p95_ms": 69
+    }
+  },
+  "user_stats": {
+    "bob": {
+      "login_success": 1,
+      "login_failure": 0
+    },
+    "carol": {
+      "login_success": 1,
+      "login_failure": 0
+    },
+    "alice": {
+      "login_success": 1,
+      "login_failure": 0
+    }
+  },
+  "http_status_counts": {
+    "2xx": 8,
+    "5xx": 3,
+    "4xx": 1
+  },
+  "anomaly_counts": {
+    "tcp_reset": 1,
+    "http_504": 1,
+    "wifi_disconnected": 1,
+    "http_503": 1
+  }
+}

@@ -1,0 +1,4 @@
+描述所有需要使用並安裝的套件。
+requests
+schedule
+python-dotenv
