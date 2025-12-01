@@ -48,12 +48,16 @@ def main():
         return
 
     print(f"[INFO] reading log file: {LOG_FILE}")
-    with LOG_FILE.open("r", encoding="utf-8") as f:
-        for line in f:
-            entry = parse_line_naive(line)
-            if entry is None:
-                continue
-            print(entry)
+    try:
+        with LOG_FILE.open("r", encoding="utf-8") as f:
+            for line in f:
+                entry = parse_line_naive(line)
+                if entry is None:
+                    continue
+                print(entry)
+    except Exception as e:
+        print(f"[ERROR] failed to read log file: {e}")
+    print("[INFO] done.")
 
 
 if __name__ == "__main__":
